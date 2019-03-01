@@ -1,55 +1,55 @@
 #include <iostream>
-#include "eps_functions.h"
+#include "./eps_functions.h"
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
-////
-/// Power is measured in Watts
-//
+const float kMaxTotalPower = 26.0000;
+const float kBatteryEnergyCapactiy = 38.5;
 
-const float MAX_TOTAL_POWER = 26.0000;
-const float BATTERY_ENERGY_CAPACITY = 38.5;
-float CURRENT_POWER_USAGE = 0; // How much power we are currently using
+// This global variable keeps track of the current power being used in real-time
+float CurrentPowerUsage = 0;
+
 // NOTE: One satelite cycle is appromixately 92 min/5520 sec
 
-void testAllStubFunctions();
+void TestAllStubFunctions();
 
-int main(int argc, char* argv[]) {
-
+int main() {
     cout << "The EPS sudocode says Hello! Starting function diagnostics...\n\n";
-    testAllStubFunctions();
+    TestAllStubFunctions();
     cout << "\n\n...Finished function diagnostics.\n";
     return 1;
 }
 
-void testAllStubFunctions() {
+void TestAllStubFunctions() {
     cout << "Current Power Usage: " << getCurrentPowerUsage() << endl;
-    CURRENT_POWER_USAGE += 10;
+    CurrentPowerUsage += 10;
     isPowerAvailable(20);
     cout << "Current Power Usage: " << getCurrentPowerUsage() << endl;
-    CURRENT_POWER_USAGE += 25;
+    CurrentPowerUsage += 25;
     isPowerAvailable(15);
     getUpdatedBatteryEnergy();
-    enableESPOverhead();
-    disableEPSOverhead();
-    enableBatteryHeaters();
-    disableBatteryHeaters();
-    enableCamera();
-    disableCamera();
-    enableADRV9361();
-    disableADRV9361();
-    enableFineSunSensor();
-    disableFineSunSensor();
-    enableCoarseSunSensor();
-    disableCoardSunSensor();
-    enableMagnetometer();
-    disableMagnetometer();
-    enableMagnetorquers();
-    disableMagnetorquers();
-    enableUHFRecieve();
-    disableUHFRecieve();
-    enableUHFTransmit();
-    disableUHFTransmit();
-    enableXBandComms();
-    disableXBandComms();
+    EnableESPOverheadRequest();
+    DisableEPSOverheadRequest();
+    EnableBatteryHeatersRequest();
+    DisableBatteryHeatersRequest();
+    EnableCameraRequest();
+    DisableCameraRequest();
+    EnableADRV9361Request();
+    DisableADRV9361Request();
+    EnableFineSunSensorRequest();
+    DisableFineSunSensorRequest();
+    EnableCoarseSunSensorRequest();
+    DisableCoardSunSensorRequest();
+    EnableMagnetometerRequest();
+    DisableMagnetometerRequest();
+    EnableMagnetorquersRequest();
+    DisableMagnetorquersRequest();
+    EnableUHFRecieveRequest();
+    DisableUHFRecieveRequest();
+    EnableUHFTransmitRequest();
+    DisableUHFTransmitRequest();
+    EnableXBandReceiveRequest();
+    EnableXBandReceiveRequest();
 }

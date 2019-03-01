@@ -1,5 +1,5 @@
-#ifndef EPS_FUNCTIONS_H
-#define EPS_FUNCTIONS_H
+#ifndef EPS_FUNCTIONS_H_
+#define EPS_FUNCTIONS_H_
 
 /*
 NOTE: It would be convenient if the EPS can check how much power
@@ -17,32 +17,30 @@ support this new incoming hardware, return true, otherwise return false.
 - Make an updateCurrentBatteryPower function
 */
 
-extern float CURRENT_POWER_USAGE;
+extern float CurrentPowerUsage;
 float getCurrentPowerUsage();
-
 float getUpdatedBatteryEnergy();
-bool isPowerAvailable(float incomingHardwarePower);
-bool enableESPOverhead();
-bool disableEPSOverhead();
-bool enableBatteryHeaters();
-bool disableBatteryHeaters();
-bool enableCamera();
-bool disableCamera();
-bool enableADRV9361();
-bool disableADRV9361();
-bool enableFineSunSensor();
-bool disableFineSunSensor();
-bool enableCoarseSunSensor();
-bool disableCoardSunSensor();
-bool enableMagnetometer();
-bool disableMagnetometer();
-bool enableMagnetorquers();
-bool disableMagnetorquers();
-bool enableUHFRecieve();
-bool disableUHFRecieve();
-bool enableUHFTransmit();
-bool disableUHFTransmit();
-bool enableXBandComms();
-bool disableXBandComms();
- 
-#endif
+bool isPowerAvailable(float incoming_hardware_power);
+bool EnableESPOverheadRequest();
+bool DisableEPSOverheadRequest();
+bool EnableBatteryHeatersRequest();
+bool DisableBatteryHeatersRequest();
+bool EnableCameraRequest();
+bool DisableCameraRequest();
+bool EnableADRV9361Request();
+bool DisableADRV9361Request();
+bool EnableFineSunSensorRequest();
+bool DisableFineSunSensorRequest();
+bool EnableCoarseSunSensorRequest();
+bool DisableCoardSunSensorRequest();
+bool EnableMagnetometerRequest();
+bool DisableMagnetometerRequest();
+bool EnableMagnetorquersRequest();
+bool DisableMagnetorquersRequest();
+bool EnableUHFRecieveRequest();
+bool DisableUHFRecieveRequest();
+bool EnableUHFTransmitRequest();
+bool DisableUHFTransmitRequest();
+bool EnableXBandReceiveRequest();
+bool EnableXBandReceiveRequest();
+#endif  // EPS_FUNCTIONS_H_
