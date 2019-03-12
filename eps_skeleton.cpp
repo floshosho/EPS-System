@@ -52,7 +52,7 @@ void TestAllStubFunctions() {
     EnableFineSunSensorRequest();
     DisableFineSunSensorRequest();
     EnableCoarseSunSensorRequest();
-    DisableCoardSunSensorRequest();
+    DisableCoarseSunSensorRequest();
     EnableMagnetometerRequest();
     DisableMagnetometerRequest();
     EnableMagnetorquersRequest();

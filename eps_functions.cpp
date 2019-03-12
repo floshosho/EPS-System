@@ -147,7 +147,8 @@ bool EnableESPOverheadRequest() {
 }
 
 /**
- * Disable EPS Overhead.
+ * Disable EPS Overhead. This most likely would not be called, except for
+ * testing purposes
  * 
  * @param[void]
  * @return True when EPS Overhead disables, else False
@@ -193,7 +194,8 @@ bool EnableADRV9361Request() {
 }
 
 /**
- * Disable the ADRV 9361.
+ * Disable the ADRV 9361. This most likely would not be called, except for
+ * testing purposes
  * 
  * @param[void]
  * @return True if ADRV 9361 disables, else False 
@@ -218,7 +220,7 @@ bool EnableCoarseSunSensorRequest() {
     return true;
 }
 
-bool DisableCoardSunSensorRequest() {
+bool DisableCoarseSunSensorRequest() {
     std::cout << "Turning off Coarse Sun Sensor\n";
     return true;
 }
@@ -253,31 +255,71 @@ bool DisableUHFRecieveRequest() {
     return true;
 }
 
+/**
+ * Enable the Camera. Before enabling the camera, the Magnetorquers and Magnetometers
+ * have to run before the camera in order to align the CubeSat with the sun 
+ * 
+ * @param[void]
+ * @return True if Camera enables, else False 
+ */
 bool EnableCameraRequest() {
     std::cout << "Turning on Camera\n";
     return true;
 }
 
+/**
+ * Enable the Camera. Most likely will be called shortly after the Camera
+ * takes a picture and saves it
+ * 
+ * @param[void]
+ * @return True if Camera disables, else False 
+ */
 bool DisableCameraRequest() {
     std::cout << "Turning off Camera\n";
     return true;
 }
 
+/**
+ * Enable the XBand Recieve. Before enabling the XBand Comms Recieve, EPS Overhead,
+ * Battery Heaters, ADRV9361, UHF Receive, and Camera must all be enabled
+ * 
+ * @param[void]
+ * @return True if XBand Transmit enables, else False 
+ */
 bool EnableXBandReceiveRequest() {
     std::cout << "Turning on X-Band Comms Receive\n";
     return true;
 }
 
+/**
+ * Disable the XBand Recieve.
+ * 
+ * @param[void]
+ * @return True if XBand Recieve disables, else False 
+ */
 bool DisableXBandReceiveRequest() {
     std::cout << "Turning off X-Band Comms Receive\n";
     return true;
 }
 
+/**
+ * Enable the XBand Transmit. Before enabling the XBand Comms Transmit, EPS Overhead,
+ * Battery Heaters, ADRV9361, Magnetometer, and UHF Receive must all be enabled
+ * 
+ * @param[void]
+ * @return True if XBand Transmit enables, else False 
+ */
 bool EnableXBandTransmitRequest() {
     std::cout << "Turning on X-Band Comms Transmit\n";
     return true;
 }
 
+/**
+ * Disable the XBand Transmit.
+ * 
+ * @param[void]
+ * @return True if XBand Transmit disables, else False 
+ */
 bool DisableXBandTransmitRequest() {
     std::cout << "Turning off X-Band Comms Transmit\n";
     return true;

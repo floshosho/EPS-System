@@ -6,7 +6,7 @@
 /**
  * @file eps_functions.h
  * This header file includes all routines for enabling and disabling all Components
- * in the CubeSAT. Additionally, the class Component is designed to help the user grab
+ * in the CubeSat. Additionally, the class Component is designed to help the user grab
  * information of the hardware, including it's name, duty cycle, typical power (watts), 
  * and whether it is enabled or not. Finally, you are also able to get the current power
  * all of the hardware is using as well as getting the energy the batteries have left
@@ -15,17 +15,11 @@
  * /
 
 /*
+
 NOTE: It would be convenient if the EPS can check how much power
 each piece of hardware is currently using.
 
 TASKS: 
-
-- Make an isPowerAvailable function to see if we can turn on a specific
-hardware. Check the CURRENT_POWER_USAGE,the battery has enough power to 
-support this new incoming hardware, return true, otherwise return false.
-
-- When XBand Comms transmit is on, EPS Overhead, Battery Heaters, ADRV, Magnetometer,
- UHF Receive, must all be on
 
  - When XBand Comms receive is on, EPS Overhead, Battery Heaters, ADRV, UHF Receive
 */
@@ -74,7 +68,7 @@ bool DisableADRV9361Request();
 bool EnableFineSunSensorRequest();
 bool DisableFineSunSensorRequest();
 bool EnableCoarseSunSensorRequest();
-bool DisableCoardSunSensorRequest();
+bool DisableCoarseSunSensorRequest();
 bool EnableMagnetometerRequest();
 bool DisableMagnetometerRequest();
 bool EnableMagnetorquersRequest();
