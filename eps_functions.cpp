@@ -55,7 +55,7 @@ bool Component::isEnabled() {
 }
 
 /**
- * Set the Component on or off
+ * Set the Component Enabled status On or Off
  * 
  * @param[boolean] true to set Component as Enabled, else false to set
  * Component as disabled
@@ -135,8 +135,8 @@ void PurgeComponents() {
 */
 
 /**
- * Enable EPS Overhead. EPS Overhead is on the Always On Rail with a
- * duty cycle of 1.0
+ * Enable EPS Overhead. EPS Overhead should always stay enabled after
+ * this call
  * 
  * @param[void]
  * @return True if EPS Overhead enables, else False
@@ -159,8 +159,7 @@ bool DisableEPSOverheadRequest() {
 }
 
 /**
- * Enable the Battery Heaters. The battery heaters are on the Always On Rail
- * with a duty cycle of 0.4
+ * Enable the Battery Heaters.
  * 
  * @param[void]
  * @return True if Battery Heaters enable, else False 
@@ -171,7 +170,8 @@ bool EnableBatteryHeatersRequest() {
 }
 
 /**
- * Disable the Battery Heaters. 
+ * Disable the Battery Heaters. This most likely would not be called, except for
+ * testing purposes
  * 
  * @param[void]
  * @return True if Battery Heaters disable, else False 
@@ -182,8 +182,9 @@ bool DisableBatteryHeatersRequest() {
 }
 
 /**
- * Enable the ADRV 9361. The ADRV 9361 is on the Always On Rail with
- * a duty cycle of 1.0
+ * Enable the ADRV 9361. The ADRV 9361 should always stay
+ * enabled after this call
+ * 
  * 
  * @param[void]
  * @return True if ADRV 9361 enables, else False 
@@ -205,51 +206,117 @@ bool DisableADRV9361Request() {
     return true;
 }
 
+/**
+ * Enable the Fine Sun Senor. Before enabling the Fine Sun Sensor, the EPS Overhead,
+ * Battery Heaters, and ADRV 9361 must all be enabled. Additionally, this is called
+ * once the Coarse Sun Sensor finishes it's job
+ * 
+ * @param[void]
+ * @return True if Coarse Sun Sensor enables, else False 
+ */
 bool EnableFineSunSensorRequest() {
     std::cout << "Turning on Fine Sun Sensor\n";
     return true;
 }
 
+/**
+ * Disable the Fine Sun Sensor. 
+ * 
+ * @param[void]
+ * @return True if Fine Sun Sensor disables, else False 
+ */
 bool DisableFineSunSensorRequest() {
     std::cout << "Turning off Fine Sun Sensor\n";
     return true;
 }
 
+/**
+ * Enable the Coarse Sun Senor. Before enabling the Coarse Sun Sensor, the EPS Overhead,
+ * Battery Heaters, and ADRV 9361 must all be enabled.
+ * 
+ * @param[void]
+ * @return True if Coarse Sun Sensor enables, else False 
+ */
 bool EnableCoarseSunSensorRequest() {
     std::cout << "Turning on Coarse Sun Sensor\n";
     return true;
 }
 
+/**
+ * Disable the Coarse Sun Sensor. 
+ * 
+ * @param[void]
+ * @return True if Coarse Sun Sensor disables, else False 
+ */
 bool DisableCoarseSunSensorRequest() {
     std::cout << "Turning off Coarse Sun Sensor\n";
     return true;
 }
 
+/**
+ * Enable the Magnetometer. Before enabling the Magnetometer, EPS Overhead,
+ * Battery Heaters, and ADRV9361 must all be enabled
+ * 
+ * @param[void]
+ * @return True if Magnetometer enables, else False 
+ */
 bool EnableMagnetometerRequest() {
     std::cout << "Turning on Magnetometer\n";
     return true;
 }
 
+/**
+ * Disable the Magnetometer.
+ * 
+ * @param[void]
+ * @return True if Magnetometer disables, else False 
+ */
 bool DisableMagnetometerRequest() {
     std::cout << "Turning off Magnetometer\n";
     return true;
 }
 
+/**
+ * Enable the Magnetorquers. Before enabling the Magnetorquers, EPS Overhead,
+ * Battery Heaters, and ADRV9361 must all be enabled
+ * 
+ * @param[void]
+ * @return True if Magnetorquers enable, else False 
+ */
 bool EnableMagnetorquersRequest() {
     std::cout << "Turning on Magnetorquers\n";
     return true;
 }
 
+/**
+ * Disable the Magnetorquers.
+ * 
+ * @param[void]
+ * @return True if Magnetorquers disable, else False 
+ */
 bool DisableMagnetorquersRequest() {
     std::cout << "Turning off Magnetorquers\n";
     return true;
 }
 
+/**
+ * Enable the UHF Recieve. Before enabling the UHF Recieve, EPS Overhead,
+ * Battery Heaters, and ADRV9361 must all be enabled
+ * 
+ * @param[void]
+ * @return True if UHF Recieve enables, else False 
+ */
 bool EnableUHFRecieveRequest() {
     std::cout << "Turning on UHF Recieve\n";
     return true;
 }
 
+/**
+ * Disable the UHF Receive.
+ * 
+ * @param[void]
+ * @return True if UHF Recieve disables, else False 
+ */
 bool DisableUHFRecieveRequest() {
     std::cout << "Turning off UHF Receive\n";
     return true;
@@ -257,7 +324,9 @@ bool DisableUHFRecieveRequest() {
 
 /**
  * Enable the Camera. Before enabling the camera, the Magnetorquers and Magnetometers
- * have to run before the camera in order to align the CubeSat with the sun 
+ * have to run before the camera in order to align the CubeSat with the sun. 
+ * Additionally, this needs to be enabled before XBand Transmit
+ * is enabled
  * 
  * @param[void]
  * @return True if Camera enables, else False 
@@ -268,8 +337,8 @@ bool EnableCameraRequest() {
 }
 
 /**
- * Enable the Camera. Most likely will be called shortly after the Camera
- * takes a picture and saves it
+ * Disable the Camera. Most likely will be called shortly after the Camera
+ * takes a picture and saves it.
  * 
  * @param[void]
  * @return True if Camera disables, else False 
@@ -281,10 +350,11 @@ bool DisableCameraRequest() {
 
 /**
  * Enable the XBand Recieve. Before enabling the XBand Comms Recieve, EPS Overhead,
- * Battery Heaters, ADRV9361, UHF Receive, and Camera must all be enabled
+ * Battery Heaters, ADRV9361, must all be enabled. Additionally, the satelite must
+ * be aligned before we set out to receive an XBand Recieve signal
  * 
  * @param[void]
- * @return True if XBand Transmit enables, else False 
+ * @return True if XBand Recieve enables, else False 
  */
 bool EnableXBandReceiveRequest() {
     std::cout << "Turning on X-Band Comms Receive\n";
@@ -304,7 +374,7 @@ bool DisableXBandReceiveRequest() {
 
 /**
  * Enable the XBand Transmit. Before enabling the XBand Comms Transmit, EPS Overhead,
- * Battery Heaters, ADRV9361, Magnetometer, and UHF Receive must all be enabled
+ * Battery Heaters, ADRV9361, Magnetometer, UHF Receive, and Camera must all be enabled
  * 
  * @param[void]
  * @return True if XBand Transmit enables, else False 
@@ -325,11 +395,24 @@ bool DisableXBandTransmitRequest() {
     return true;
 }
 
+/**
+ * Enable the UHF Transmit. Before enabling the UHF Transmit, EPS Overhead,
+ * Battery Heaters, and ADRV9361 must all be enabled
+ * 
+ * @param[void]
+ * @return True if UHF Transmit enables, else False 
+ */
 bool EnableUHFTransmitRequest() {
     std::cout << "Turning on UHF Transmit\n";
     return true;
 }
 
+/**
+ * Disable the UHF Transmit.
+ * 
+ * @param[void]
+ * @return True if UHF Transmit disables, else False 
+ */
 bool DisableUHFTransmitRequest() {
     std::cout << "Turning off UHF Transmit\n";
     return true;
