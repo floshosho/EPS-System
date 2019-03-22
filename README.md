@@ -4,9 +4,9 @@ This code defines a handy API used for the EPS-System in the CubeSat. The Compon
 is meant to be a class that helps the user keep track of each component in the 
 satelite. There are subroutines to Enable and Disable each piece of hardware and functions that check for power availability, battery power, etc.
 
-Currently, this API is in it's early alpha, meaning that most of the crucial
+Currently, this API is in its early alpha, meaning that most of the crucial
 functions are stub functions. These will be updated respectively once we get a working
-EPS. (See "Running the Tests" to get a brief description on envoking this API)
+EPS. (See "Running the Test Functions" to get a brief description on envoking this API)
 
 # Prerequisites
 
@@ -15,7 +15,7 @@ To run the eps_skeleton.cpp, you must have:
 - GNU Make 4.1 Built for x86_64-pc-linux-gnu
 - g++ (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
 
-# How to Run the Stub Functions
+# Running the Test Functions
 
 You can run the program by simply calling these commands while in the EPS-System
 directory:
