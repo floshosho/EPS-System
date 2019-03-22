@@ -1,3 +1,4 @@
+// Copyright @SpaceHauc
 #include <iostream>
 #include "./eps_functions.h"
 

@@ -21,12 +21,12 @@ You can run the program by simply calling these commands while in the EPS-System
 directory:
 
 ```
-florens@computer:~/Desktop/EPS-System$ make
+user@computer:~/Desktop/EPS-System$ make
 g++ -c eps_skeleton.cpp
 g++ -c eps_functions.cpp
 g++ eps_skeleton.o  eps_functions.o -o eps_skeleton
 
-florens@computer:~/Desktop/EPS-System$ ./eps_skeleton 
+user@computer:~/Desktop/EPS-System$ ./eps_skeleton 
 ```
 Sample output:
 

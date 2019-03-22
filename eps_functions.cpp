@@ -1,3 +1,4 @@
+// Copyright @SpaceHauc
 #include "./eps_functions.h"
 #include <iostream>
 
@@ -170,8 +171,7 @@ bool EnableBatteryHeatersRequest() {
 }
 
 /**
- * Disable the Battery Heaters. This most likely would not be called, except for
- * testing purposes
+ * Disable the Battery Heaters.
  * 
  * @param[void]
  * @return True if Battery Heaters disable, else False 
@@ -208,7 +208,7 @@ bool DisableADRV9361Request() {
 
 /**
  * Enable the Fine Sun Senor. Before enabling the Fine Sun Sensor, the EPS Overhead,
- * Battery Heaters, and ADRV 9361 must all be enabled. Additionally, this is called
+ * Battery Heaters, Coarse Sun Sensor, and ADRV 9361 must all be enabled. Additionally, this is called
  * once the Coarse Sun Sensor finishes it's job
  * 
  * @param[void]
@@ -220,7 +220,8 @@ bool EnableFineSunSensorRequest() {
 }
 
 /**
- * Disable the Fine Sun Sensor. 
+ * Disable the Fine Sun Sensor. This function would ideally be called once
+ * the Camera has already taken a picture 
  * 
  * @param[void]
  * @return True if Fine Sun Sensor disables, else False 
@@ -232,7 +233,7 @@ bool DisableFineSunSensorRequest() {
 
 /**
  * Enable the Coarse Sun Senor. Before enabling the Coarse Sun Sensor, the EPS Overhead,
- * Battery Heaters, and ADRV 9361 must all be enabled.
+ * Battery Heaters, Coarse Sun Sensor, and ADRV 9361 must all be enabled.
  * 
  * @param[void]
  * @return True if Coarse Sun Sensor enables, else False 
@@ -243,7 +244,8 @@ bool EnableCoarseSunSensorRequest() {
 }
 
 /**
- * Disable the Coarse Sun Sensor. 
+ * Disable the Coarse Sun Sensor. This would ideally never be called,
+ * unless for testing purposes
  * 
  * @param[void]
  * @return True if Coarse Sun Sensor disables, else False 
@@ -255,7 +257,7 @@ bool DisableCoarseSunSensorRequest() {
 
 /**
  * Enable the Magnetometer. Before enabling the Magnetometer, EPS Overhead,
- * Battery Heaters, and ADRV9361 must all be enabled
+ * Battery Heaters, Coarse Sun Sensor, and ADRV9361 must all be enabled
  * 
  * @param[void]
  * @return True if Magnetometer enables, else False 
@@ -266,7 +268,8 @@ bool EnableMagnetometerRequest() {
 }
 
 /**
- * Disable the Magnetometer.
+ * Disable the Magnetometer. This function is called once the Coarse Sun Sensor
+ * stop receiving light
  * 
  * @param[void]
  * @return True if Magnetometer disables, else False 
@@ -278,7 +281,7 @@ bool DisableMagnetometerRequest() {
 
 /**
  * Enable the Magnetorquers. Before enabling the Magnetorquers, EPS Overhead,
- * Battery Heaters, and ADRV9361 must all be enabled
+ * Battery Heaters, Coarse Sun Sensor, Magnetometer, and ADRV9361 must all be enabled
  * 
  * @param[void]
  * @return True if Magnetorquers enable, else False 
@@ -289,7 +292,8 @@ bool EnableMagnetorquersRequest() {
 }
 
 /**
- * Disable the Magnetorquers.
+ * Disable the Magnetorquers. This function is called once the Magnetometer is
+ * turned off
  * 
  * @param[void]
  * @return True if Magnetorquers disable, else False 
@@ -301,7 +305,8 @@ bool DisableMagnetorquersRequest() {
 
 /**
  * Enable the UHF Recieve. Before enabling the UHF Recieve, EPS Overhead,
- * Battery Heaters, and ADRV9361 must all be enabled
+ * Battery Heaters, and ADRV9361 must all be enabled and should be on before
+ * the Fine Sun Sensor and Magnetometer/Magnetorquers turn on
  * 
  * @param[void]
  * @return True if UHF Recieve enables, else False 
@@ -312,7 +317,8 @@ bool EnableUHFRecieveRequest() {
 }
 
 /**
- * Disable the UHF Receive.
+ * Disable the UHF Receive. This would most likely not be called,
+ * unless for testing purposes
  * 
  * @param[void]
  * @return True if UHF Recieve disables, else False 
@@ -323,8 +329,9 @@ bool DisableUHFRecieveRequest() {
 }
 
 /**
- * Enable the Camera. Before enabling the camera, the Magnetorquers and Magnetometers
- * have to run before the camera in order to align the CubeSat with the sun. 
+ * Enable the Camera. Before enabling the camera, the Magnetorquers, Magnetometers,
+ * and Fine Sun Sensors have to run before the
+ * camera in order to align the CubeSat with the sun. 
  * Additionally, this needs to be enabled before XBand Transmit
  * is enabled
  * 
@@ -350,8 +357,9 @@ bool DisableCameraRequest() {
 
 /**
  * Enable the XBand Recieve. Before enabling the XBand Comms Recieve, EPS Overhead,
- * Battery Heaters, ADRV9361, must all be enabled. Additionally, the satelite must
- * be aligned before we set out to receive an XBand Recieve signal
+ * Battery Heaters, ADRV9361, and Coarse Sun Sensor must all be enabled.
+ * Additionally, the satelite must be aligned before we set out to 
+ * receive a XBand Recieve signal
  * 
  * @param[void]
  * @return True if XBand Recieve enables, else False 
@@ -362,7 +370,8 @@ bool EnableXBandReceiveRequest() {
 }
 
 /**
- * Disable the XBand Recieve.
+ * Disable the XBand Recieve. This would be called after XBand Comms Receive
+ * finishes recieving information
  * 
  * @param[void]
  * @return True if XBand Recieve disables, else False 
@@ -374,7 +383,8 @@ bool DisableXBandReceiveRequest() {
 
 /**
  * Enable the XBand Transmit. Before enabling the XBand Comms Transmit, EPS Overhead,
- * Battery Heaters, ADRV9361, Magnetometer, UHF Receive, and Camera must all be enabled
+ * Battery Heaters, ADRV9361, Coarse Sun Sensor, Magnetometer, and UHF Receive
+ * must all be enabled
  * 
  * @param[void]
  * @return True if XBand Transmit enables, else False 
@@ -385,7 +395,8 @@ bool EnableXBandTransmitRequest() {
 }
 
 /**
- * Disable the XBand Transmit.
+ * Disable the XBand Transmit. This would be called after XBand Comms Transmit
+ * finishes transmiting information
  * 
  * @param[void]
  * @return True if XBand Transmit disables, else False 
@@ -397,7 +408,7 @@ bool DisableXBandTransmitRequest() {
 
 /**
  * Enable the UHF Transmit. Before enabling the UHF Transmit, EPS Overhead,
- * Battery Heaters, and ADRV9361 must all be enabled
+ * Battery Heaters, Coarse Sun Sensor, and ADRV9361 must all be enabled
  * 
  * @param[void]
  * @return True if UHF Transmit enables, else False 
@@ -408,7 +419,8 @@ bool EnableUHFTransmitRequest() {
 }
 
 /**
- * Disable the UHF Transmit.
+ * Disable the UHF Transmit. This would be called after UHF Transmit
+ * finishes transmiting information
  * 
  * @param[void]
  * @return True if UHF Transmit disables, else False 

@@ -1,3 +1,4 @@
+// Copyright @SpaceHauc
 #ifndef EPS_FUNCTIONS_H_
 #define EPS_FUNCTIONS_H_
 
@@ -15,13 +16,8 @@
  * /
 
 /*
-
 NOTE: It would be convenient if the EPS can check how much power
 each piece of hardware is currently using.
-
-TASKS: 
-
- - When XBand Comms receive is on, EPS Overhead, Battery Heaters, ADRV, UHF Receive
 */
 
 class Component {
